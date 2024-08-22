@@ -10,7 +10,7 @@
 ![demo1](https://github.com/user-attachments/assets/1c767bc0-43c4-4a60-ab97-b8b8e916ddc8)
 ![demo2](https://github.com/user-attachments/assets/3c341c29-536c-4032-b5f4-f9ec06731dfe)
 
-This is an action to run [ast-grep][ast-grep] with [reviewdog][reviewdog].
+This is an action to run [ast-grep(sg)][ast-grep] with [reviewdog][reviewdog].
 
 [ast-grep]: https://github.com/ast-grep/ast-grep
 [reviewdog]: https://github.com/reviewdog/reviewdog
@@ -59,6 +59,10 @@ inputs:
 
 ## Usage
 
+Create `sgconfig.yml` and some rules in your repository by following the [project setup guide][sg-scan-guide].
+
+Add a workflow to run action-ast-grep that triggered by pull request event.
+
 ```yaml
 name: reviewdog
 on: [pull_request]
@@ -76,7 +80,13 @@ jobs:
           # Change reporter level if you need.
           # GitHub Status Check won't become failure with warning.
           level: warning
+          # path to the sgconfig.yml
+          sg_config: sgconfig.yml
 ```
+
+Reviewdog will report `ast-grep scan` result.
+
+[sg-scan-guide]: https://ast-grep.github.io/guide/scan-project.html
 
 ## Development
 
