@@ -17,3 +17,13 @@ jobs:
           version_name: reviewdog_version
           repo: reviewdog/reviewdog
           labels: "bump:minor"
+  ast-grep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: reviewdog/action-depup/with-pr@v1
+        with:
+          file: action.yml
+          version_name: DEFAULT_SG_VERSION
+          repo: ast-grep/ast-grep
+          labels: "bump:minor"
