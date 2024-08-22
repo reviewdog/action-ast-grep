@@ -1,7 +1,6 @@
-# TODO: replace `<linter-name>` and `<your-name>` with yours
-name: 'Run <linter-name> with reviewdog'
-description: '🐶 Run <linter-name> with reviewdog on pull requests to improve code review experience.'
-author: '<your-name>'
+name: 'Run ast-grep with reviewdog'
+description: '🐶 Run ast-grep with reviewdog on pull requests to improve code review experience.'
+author: 'rinx'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
@@ -12,7 +11,7 @@ inputs:
   ### Flags for reviewdog ###
   tool_name:
     description: 'Tool name to use for reviewdog reporter.'
-    default: '<linter-name>'
+    default: 'ast-grep'
   level:
     description: 'Report level for reviewdog [info,warning,error].'
     default: 'error'
@@ -35,10 +34,14 @@ inputs:
   output_dir:
     description: 'Output directory of reviewdog result. Useful for -reporter=sarif'
     default: '../reviewdog-results'
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+  ### Flags for ast-grep ###
+  sg_version:
+    description: 'ast-grep version.'
     default: ''
+  sg_config:
+    description: 'path to the ast-grep config file'
+    default: 'sgconfig.yml'
+
 runs:
   using: 'composite'
   steps:
@@ -59,14 +62,15 @@ runs:
         INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_OUTPUT_DIR: ${{ inputs.output_dir }}
-        INPUT_LOCALE: ${{ inputs.locale }}
+        INPUT_SG_VERSION: ${{ inputs.sg_version }}
+        INPUT_SG_CONFIG: ${{ inputs.sg_config }}
+        DEFAULT_SG_VERSION: 0.26.2
     - if: inputs.reporter == 'sarif'
       uses: github/codeql-action/upload-sarif@v3
       with:
         sarif_file: ${{ inputs.output_dir }}
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
-# TODO: update branding if you want.
 branding:
   icon: 'check'
   color: 'blue'

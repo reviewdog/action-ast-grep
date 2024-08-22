@@ -1,32 +1,22 @@
-# action-composite-template
+# action-ast-grep
 
-<!-- TODO: replace reviewdog/action-composite-template with your repo name -->
-[![Test](https://github.com/reviewdog/action-composite-template/workflows/Test/badge.svg)](https://github.com/reviewdog/action-composite-template/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/reviewdog/action-composite-template/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-composite-template/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/reviewdog/action-composite-template/workflows/depup/badge.svg)](https://github.com/reviewdog/action-composite-template/actions?query=workflow%3Adepup)
-[![release](https://github.com/reviewdog/action-composite-template/workflows/release/badge.svg)](https://github.com/reviewdog/action-composite-template/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-composite-template?logo=github&sort=semver)](https://github.com/reviewdog/action-composite-template/releases)
+[![Test](https://github.com/reviewdog/action-ast-grep/workflows/Test/badge.svg)](https://github.com/reviewdog/action-ast-grep/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/reviewdog/action-ast-grep/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-ast-grep/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/reviewdog/action-ast-grep/workflows/depup/badge.svg)](https://github.com/reviewdog/action-ast-grep/actions?query=workflow%3Adepup)
+[![release](https://github.com/reviewdog/action-ast-grep/workflows/release/badge.svg)](https://github.com/reviewdog/action-ast-grep/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-ast-grep?logo=github&sort=semver)](https://github.com/reviewdog/action-ast-grep/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
-![github-pr-review demo](https://user-images.githubusercontent.com/3797062/73162963-4b8e2b00-4132-11ea-9a3f-f9c6f624c79f.png)
-![github-pr-check demo](https://user-images.githubusercontent.com/3797062/73163032-70829e00-4132-11ea-8481-f213a37db354.png)
+![demo1](https://github.com/user-attachments/assets/1c767bc0-43c4-4a60-ab97-b8b8e916ddc8)
+![demo2](https://github.com/user-attachments/assets/3c341c29-536c-4032-b5f4-f9ec06731dfe)
 
-<!-- TODO: outline your action here -->
-This is a template repository for
-[reviewdog](https://github.com/reviewdog/reviewdog) action with release
-automation based on [action composition](https://docs.github.com/en/actions/creating-actions/creating-a-composite-action).
-Click `Use this template` button to create your reviewdog action :dog:!
+This is an action to run [ast-grep][ast-grep] with [reviewdog][reviewdog].
 
-If you want to create your own reviewdog action from scratch without using this
-template, please check and copy release automation flow.
-It's important to manage release workflow and sync reviewdog version for all
-reviewdog actions.
-
-This repo contains a sample action to run [misspell](https://github.com/client9/misspell).
+[ast-grep]: https://github.com/ast-grep/ast-grep
+[reviewdog]: https://github.com/reviewdog/reviewdog
 
 ## Input
 
-<!-- TODO: replace `<linter-name>` with yours -->
 ```yaml
 inputs:
   github_token:
@@ -38,7 +28,7 @@ inputs:
   ### Flags for reviewdog ###
   tool_name:
     description: 'Tool name to use for reviewdog reporter.'
-    default: '<linter-name>'
+    default: 'ast-grep'
   level:
     description: 'Report level for reviewdog [info,warning,error].'
     default: 'error'
@@ -58,26 +48,27 @@ inputs:
   reviewdog_flags:
     description: 'Additional reviewdog flags.'
     default: ''
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+  ### Flags for ast-grep ###
+  sg_version:
+    description: 'ast-grep version.'
     default: ''
+  sg_config:
+    description: 'path to the ast-grep config file'
+    default: 'sgconfig.yml'
 ```
 
 ## Usage
-<!-- TODO: replace reviewdog/action-composite-template with your repo name -->
 
 ```yaml
 name: reviewdog
 on: [pull_request]
 jobs:
-  # TODO: replace `linter_name` and `<linter-name>` with yours
-  linter_name:
-    name: runner / <linter-name>
+  ast-grep:
+    name: runner / ast-grep
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: reviewdog/action-composite-template@v1
+      - uses: reviewdog/action-ast-grep@v1
         with:
           github_token: ${{ secrets.github_token }}
           # Change reviewdog reporter if you need [github-check,github-pr-review,github-pr-check].

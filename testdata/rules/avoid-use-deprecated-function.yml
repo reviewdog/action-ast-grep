@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/ast-grep/ast-grep/main/schemas/rule.json
+
+id: avoid-use-deprecated-function
+message: Avoid to use deprecated function
+severity: warning # error, warning, info, hint
+language: Go
+rule:
+  kind: comment
+  regex: "//\\s*[dD]eprecated:.*"
+# utils: Extract repeated rule as local utility here.
+# note: Add detailed explanation for the rule.
