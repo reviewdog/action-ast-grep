@@ -34,7 +34,10 @@ echo '::endgroup::'
 echo '::group:: Running ast-grep with reviewdog 🐶 ...'
 
 # shellcheck disable=SC2086
-ast-grep scan --config="${INPUT_SG_CONFIG}" --json=compact |
+ast-grep scan \
+  --config="${INPUT_SG_CONFIG}" \
+  --json=compact \
+  ${INPUT_SG_FLAGS} |
   jq -f "${GITHUB_ACTION_PATH}/to-rdjsonl.jq" -c |
   reviewdog \
     -f=rdjsonl \

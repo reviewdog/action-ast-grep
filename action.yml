@@ -26,7 +26,6 @@ inputs:
   fail_on_error:
     description: |
       Exit code for reviewdog when errors are found [true,false].
-      Default is `false`.
     default: 'false'
   reviewdog_flags:
     description: 'Additional reviewdog flags.'
@@ -41,6 +40,9 @@ inputs:
   sg_config:
     description: 'path to the ast-grep config file'
     default: 'sgconfig.yml'
+  sg_flags:
+    description: 'Additional ast-grep flags.'
+    default: ''
 
 runs:
   using: 'composite'
@@ -64,6 +66,7 @@ runs:
         INPUT_OUTPUT_DIR: ${{ inputs.output_dir }}
         INPUT_SG_VERSION: ${{ inputs.sg_version }}
         INPUT_SG_CONFIG: ${{ inputs.sg_config }}
+        INPUT_SG_FLAGS: ${{ inputs.sg_flags }}
         DEFAULT_SG_VERSION: 0.26.2
     - if: inputs.reporter == 'sarif'
       uses: github/codeql-action/upload-sarif@v3
