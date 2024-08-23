@@ -126,7 +126,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build tree-sitter grammer for fennel
+      - name: Build tree-sitter grammar for fennel
         uses: rinx/setup-tree-sitter-parser@v1
         with:
           # this action will place the build artifact here.
