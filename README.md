@@ -55,6 +55,9 @@ inputs:
   sg_config:
     description: 'path to the ast-grep config file'
     default: 'sgconfig.yml'
+  sg_flags:
+    description: 'Additional ast-grep flags.'
+    default: ''
 ```
 
 ## Usage
