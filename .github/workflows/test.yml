@@ -6,8 +6,13 @@ on:
   pull_request:
 jobs:
   test-check:
-    name: runner / ast-grep (github-check)
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+    name: runner (${{ matrix.os }}) / ast-grep (github-check)
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: ./
