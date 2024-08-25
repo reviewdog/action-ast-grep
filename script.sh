@@ -21,8 +21,23 @@ echo '::group::🐶 Installing ast-grep ... https://github.com/ast-grep/ast-grep
 TEMP_PATH="$(mktemp -d)"
 PATH="${TEMP_PATH}:$PATH"
 
+unameOS="$(uname -s)"
+case "${unameOS}" in
+Linux*) os=unknown-linux-gnu ;;
+Darwin*) os=apple-darwin ;;
+*) echo "Unsupported system: ${unameOS}" && exit 1 ;;
+esac
+
+unameArch="$(uname -m)"
+case "${unameArch}" in
+x86*) arch=x86_64 ;;
+aarch64*) arch=aarch64 ;;
+arm64*) arch=aarch64 ;;
+*) echo "Unsupported architecture: ${unameArch}" && exit 1 ;;
+esac
+
 curl --silent --show-error --fail \
-  --location "https://github.com/ast-grep/ast-grep/releases/download/${INPUT_SG_VERSION}/app-x86_64-unknown-linux-gnu.zip" \
+  --location "https://github.com/ast-grep/ast-grep/releases/download/${INPUT_SG_VERSION}/app-${arch}-${os}.zip" \
   --output "${TEMP_PATH}/sg.zip"
 
 unzip -u "${TEMP_PATH}/sg.zip" -d "${TEMP_PATH}/temp-sg"
