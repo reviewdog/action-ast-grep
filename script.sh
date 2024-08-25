@@ -44,6 +44,8 @@ unzip -u "${TEMP_PATH}/sg.zip" -d "${TEMP_PATH}/temp-sg"
 install "${TEMP_PATH}/temp-sg/ast-grep" "${TEMP_PATH}"
 rm -rf "${TEMP_PATH}/sg.zip" "${TEMP_PATH}/temp-sg"
 
+ast-grep --version
+
 echo '::endgroup::'
 
 echo '::group:: Running ast-grep with reviewdog 🐶 ...'
