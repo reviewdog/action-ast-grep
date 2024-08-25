@@ -23,17 +23,17 @@ PATH="${TEMP_PATH}:$PATH"
 
 unameOS="$(uname -s)"
 case "${unameOS}" in
-Linux*) os=unknown-linux-gnu ;;
-Darwin*) os=apple-darwin ;;
-*) echo "Unsupported system: ${unameOS}" && exit 1 ;;
+  Linux*) os=unknown-linux-gnu ;;
+  Darwin*) os=apple-darwin ;;
+  *) echo "Unsupported system: ${unameOS}" && exit 1 ;;
 esac
 
 unameArch="$(uname -m)"
 case "${unameArch}" in
-x86*) arch=x86_64 ;;
-aarch64*) arch=aarch64 ;;
-arm64*) arch=aarch64 ;;
-*) echo "Unsupported architecture: ${unameArch}" && exit 1 ;;
+  x86*) arch=x86_64 ;;
+  aarch64*) arch=aarch64 ;;
+  arm64*) arch=aarch64 ;;
+  *) echo "Unsupported architecture: ${unameArch}" && exit 1 ;;
 esac
 
 curl --silent --show-error --fail \
