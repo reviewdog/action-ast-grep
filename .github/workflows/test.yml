@@ -46,7 +46,7 @@ jobs:
           reporter: github-pr-review
           level: error
           filter_mode: file
-          fail_on_error: true
+          fail_level: any
       - name: check the exit code
         if: ${{ !success() }}
         run: echo 'The previous step should fail' && exit 1
