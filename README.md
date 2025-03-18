@@ -100,8 +100,8 @@ jobs:
     name: runner / ast-grep
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: reviewdog/action-ast-grep@v1
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: reviewdog/action-ast-grep@1d5fcb951c6e512f0de62e62031a27dd9d62fec0 # v1.26.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Change reviewdog reporter if you need [github-check,github-pr-review,github-pr-check].
@@ -133,15 +133,15 @@ jobs:
     name: runner / ast-grep / fennel
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
       - name: Build tree-sitter grammar for fennel
-        uses: rinx/setup-tree-sitter-parser@v1
+        uses: rinx/setup-tree-sitter-parser@e0242ba833bf1c7f89d758f46da25653b2feba12 # v1.0.1
         with:
           # this action will place the build artifact here.
           parser_dir: ./
           parser_repository: alexmozaidze/tree-sitter-fennel
       - name: Run ast-grep with reviewdog
-        uses: reviewdog/action-ast-grep@v1
+        uses: reviewdog/action-ast-grep@1d5fcb951c6e512f0de62e62031a27dd9d62fec0 # v1.26.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: info
