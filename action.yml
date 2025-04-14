@@ -77,7 +77,7 @@ runs:
         INPUT_SG_VERSION: ${{ inputs.sg_version }}
         INPUT_SG_CONFIG: ${{ inputs.sg_config }}
         INPUT_SG_FLAGS: ${{ inputs.sg_flags }}
-        DEFAULT_SG_VERSION: 0.36.2
+        DEFAULT_SG_VERSION: 0.36.3
     - if: inputs.reporter == 'sarif'
       uses: github/codeql-action/upload-sarif@45775bd8235c68ba998cffa5171334d58593da47 # v3.28.15
       with:
