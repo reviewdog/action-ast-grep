@@ -43,7 +43,7 @@ jobs:
           TAG_NAME: ${{ steps.tag.outputs.value }}
           BODY: ${{ steps.bumpr.outputs.message }}
           # This token is provided by Actions, you do not need to create your own token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create "${TAG_NAME}" -t "Release ${TAG_NAME}" --notes "${BODY}"
 
