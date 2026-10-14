@@ -84,6 +84,12 @@ The default is `sgconfig.yml`.
 
 Additional ast-grep flags.
 
+### `custom_languages`
+
+Whether to allow custom language libraries [allow,ignore].
+The default is `allow` for backward compatibility.
+Ref: https://github.com/ast-grep/ast-grep/issues/2992
+
 ## Usage
 
 ### Basic
@@ -122,6 +128,7 @@ Reviewdog will report `ast-grep scan` result.
 ast-grep experimentally supports custom languages. ([ref][sg-custom-lang])
 
 To use this feature with this action, build tree-sitter parsers before calling this action on your workflow.
+Also, ensure that `custom_languages` is set to `allow` (which is the default).
 
 For building tree-sitter parsers, [rinx/setup-tree-sitter-parser][rinx/setup-tree-sitter-parser] is useful.
 
@@ -146,6 +153,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           level: info
           reporter: github-pr-review
+          # Allow custom language libraries for custom parser.
+          custom_languages: allow
 ```
 
 [sg-custom-lang]: https://ast-grep.github.io/advanced/custom-language.html

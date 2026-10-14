@@ -52,6 +52,10 @@ inputs:
   sg_flags:
     description: 'Additional ast-grep flags.'
     default: ''
+  custom_languages:
+    description: 'Whether to allow custom language libraries (allow, ignore). Default is allow for backward compatibility.'
+    default: 'allow'
+
 
 runs:
   using: 'composite'
@@ -77,6 +81,7 @@ runs:
         INPUT_SG_VERSION: ${{ inputs.sg_version }}
         INPUT_SG_CONFIG: ${{ inputs.sg_config }}
         INPUT_SG_FLAGS: ${{ inputs.sg_flags }}
+        INPUT_CUSTOM_LANGUAGES: ${{ inputs.custom_languages }}
         DEFAULT_SG_VERSION: 0.50.0
     - if: inputs.reporter == 'sarif'
       uses: github/codeql-action/upload-sarif@24c54180a607b1449ed407dd24f251e4e9147c8d # v4.38.3
