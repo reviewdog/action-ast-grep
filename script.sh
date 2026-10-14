@@ -53,6 +53,7 @@ echo '::group:: Running ast-grep with reviewdog 🐶 ...'
 # shellcheck disable=SC2086
 ast-grep scan \
   --config="${INPUT_SG_CONFIG}" \
+  --custom-languages "${INPUT_CUSTOM_LANGUAGES}" \
   --json=compact \
   ${INPUT_SG_FLAGS} |
   jq -f "${GITHUB_ACTION_PATH}/to-rdjsonl.jq" -c |
