@@ -84,7 +84,7 @@ runs:
         INPUT_CUSTOM_LANGUAGES: ${{ inputs.custom_languages }}
         DEFAULT_SG_VERSION: 0.51.0
     - if: inputs.reporter == 'sarif'
-      uses: github/codeql-action/upload-sarif@v4.39.0
+      uses: github/codeql-action/upload-sarif@v4.39.1
       with:
         sarif_file: ${{ inputs.output_dir }}
 
