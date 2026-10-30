@@ -60,7 +60,7 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f # v1.5.0
+    - uses: reviewdog/action-setup@v1.5.0
       with:
         reviewdog_version: v0.21.2
     - run: $GITHUB_ACTION_PATH/script.sh
@@ -84,7 +84,7 @@ runs:
         INPUT_CUSTOM_LANGUAGES: ${{ inputs.custom_languages }}
         DEFAULT_SG_VERSION: 0.51.0
     - if: inputs.reporter == 'sarif'
-      uses: github/codeql-action/upload-sarif@6f2ac81f5cd81fe351a197ba0b00d91d03cd2aee # v4.39.0
+      uses: github/codeql-action/upload-sarif@v4.39.0
       with:
         sarif_file: ${{ inputs.output_dir }}
 
