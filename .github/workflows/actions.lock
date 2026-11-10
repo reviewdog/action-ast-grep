@@ -19,7 +19,7 @@ workflows:
         - 'haya14busa/action-cond@v1.2.1'
         - 'reviewdog/action-actionlint@v1.83.0'
         - 'reviewdog/action-alex@v1.19.0'
-        - 'reviewdog/action-misspell@v1.30.4'
+        - 'reviewdog/action-misspell@v1.31.0'
         - 'reviewdog/action-shellcheck@v1.34.1'
         - 'reviewdog/action-shfmt@v1.1.0'
     '.github/workflows/test.yml':
@@ -85,9 +85,9 @@ dependencies:
         uses:
             - 'peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1'
             - 'reviewdog/action-depup@680d0a6dedb9c170ec21b8e1eacf7a1133937743'
-    'reviewdog/action-misspell@v1.30.4':
-        ref: 'v1.30.4'
-        commit: 'sha1-840bfbe9f804da9afb0bd739dc4689012f3fdd2d'
+    'reviewdog/action-misspell@v1.31.0':
+        ref: 'v1.31.0'
+        commit: 'sha1-c846b6b0996029d2d39540c8ffebebbd957072db'
         owner_id: 48765237
         repo_id: 208637003
     'reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f':
